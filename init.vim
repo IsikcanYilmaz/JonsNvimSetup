@@ -19,6 +19,8 @@ let g:AutoPairs = {}        " turns off auto closing
 set noshowmode              " turns off the bottom line that says --INSERT--
 set tabstop=2               " tab spacing
 set shiftwidth=2            " tab spacing
+set ignorecase
+set smartcase
 
 " CODE FOLDING SETTINGS
 " Do z + a to codefold functions
