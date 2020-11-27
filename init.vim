@@ -61,6 +61,9 @@ call plug#begin('~/.config/nvim/plugged')
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+" NERCommenter
+Plug 'preservim/nerdcommenter'
+
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -73,17 +76,22 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " lightline
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ }
-      \ }
+"Plug 'itchyny/lightline.vim'
+"let g:lightline = {
+"      \ 'colorscheme': 'seoul256',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'FugitiveHead'
+"      \ }
+"      \ }
+
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'powerline/fonts'
 
 " COC
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -93,6 +101,11 @@ source ~/.config/nvim/coc_config.vim
 " SimpylFold Python code folder
 Plug 'tmhedberg/SimpylFold'
 
+" nvim-gdb
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./test/prerequisites.sh && ./install.sh' }
+
+" Tig
+Plug 'iberianpig/tig-explorer.vim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
@@ -103,8 +116,38 @@ call plug#end()
 " NERDTree config
 let g:NERDTreeWinPos = "right"
 
+" Airline config
+" (https://vi.stackexchange.com/questions/3359/how-do-i-fix-the-status-bar-symbols-in-the-airline-plugin)
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
+" airline unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" airline theme
+let g:airline_theme = 'deus'
 
 
 """""""""""""""""""""""""""""""""""""""""""""

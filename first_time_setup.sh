@@ -49,6 +49,16 @@ if [ ! -f "$NVIMDIR/autoload/plug.vim" ] || [ $FORCE == 1 ]; then
   echo "[+] Downloaded plug.vim"
 fi
 
+# for pynvim
+pip3 install pynvim
+pip3 install --upgrade pynvim
+
+# for tig
+sudo apt install tig
+
+# for airline
+sudo apt install fonts-powerline
+
 # Install coc extensions
 #nvim -u coc_extension_install.vim
 
