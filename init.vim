@@ -115,6 +115,9 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./test/prerequisites.sh && ./install.sh' }
 " Tig
 Plug 'iberianpig/tig-explorer.vim'
 
+" hexmode
+Plug 'fidian/hexmode'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -124,7 +127,10 @@ call plug#end()
 let g:NERDTreeWinPos = "right"
 
 " Vimshell config
+"
 
+" Hexmode config
+"
 
 " Airline config
 " (https://vi.stackexchange.com/questions/3359/how-do-i-fix-the-status-bar-symbols-in-the-airline-plugin)
