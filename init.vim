@@ -77,6 +77,11 @@ Plug 'airblade/vim-gitgutter'
 " Fugitive
 Plug 'tpope/vim-fugitive'
 
+" Vimshell
+Plug 'shougo/neocomplcache'
+Plug 'shougo/vimproc', {'do' : 'make'}
+Plug 'shougo/vimshell'
+
 " lightline
 "Plug 'itchyny/lightline.vim'
 "let g:lightline = {
@@ -114,9 +119,11 @@ call plug#end()
 
 " CONFIGS """""""""""""""""""""""""""""""""""
 
-
 " NERDTree config
 let g:NERDTreeWinPos = "right"
+
+" Vimshell config
+
 
 " Airline config
 " (https://vi.stackexchange.com/questions/3359/how-do-i-fix-the-status-bar-symbols-in-the-airline-plugin)
@@ -153,3 +160,4 @@ let g:airline_theme = 'deus'
 
 
 """""""""""""""""""""""""""""""""""""""""""""
+
