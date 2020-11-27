@@ -79,8 +79,9 @@ Plug 'tpope/vim-fugitive'
 
 " Vimshell
 Plug 'shougo/neocomplcache'
-Plug 'shougo/vimproc', {'do' : 'make'}
-Plug 'shougo/vimshell'
+Plug 'shougo/deol.nvim'
+"Plug 'shougo/vimproc', {'do' : 'make'}
+"Plug 'shougo/vimshell'
 
 " lightline
 "Plug 'itchyny/lightline.vim'
