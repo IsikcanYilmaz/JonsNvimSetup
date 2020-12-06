@@ -118,6 +118,9 @@ Plug 'iberianpig/tig-explorer.vim'
 " hexmode
 Plug 'fidian/hexmode'
 
+" Tagbar
+Plug 'preservim/tagbar'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
 
