@@ -124,8 +124,6 @@ Plug 'preservim/tagbar'
 " FlyGrep
 Plug 'wsdjeg/FlyGrep.vim'
 
-" Ctrl P
-Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
