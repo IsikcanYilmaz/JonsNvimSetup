@@ -172,6 +172,7 @@ let g:airline_symbols.linenr = ''
 " airline theme
 let g:airline_theme = 'deus'
 
-
+" CUSTOM KEY SHORTCUTS
+:nnoremap ' :Tags<CR>
 """""""""""""""""""""""""""""""""""""""""""""
 
