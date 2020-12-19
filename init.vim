@@ -118,8 +118,14 @@ Plug 'iberianpig/tig-explorer.vim'
 " hexmode
 Plug 'fidian/hexmode'
 
-" Tagbar
+" Tagbar " Depends on ExuberantCtags 5.5 or up
 Plug 'preservim/tagbar'
+
+" FlyGrep
+Plug 'wsdjeg/FlyGrep.vim'
+
+" Ctrl P
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
