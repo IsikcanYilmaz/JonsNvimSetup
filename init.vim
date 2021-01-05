@@ -21,6 +21,7 @@ set tabstop=2               " tab spacing
 set shiftwidth=2            " tab spacing
 set ignorecase
 set smartcase
+set nocscopeverbose
 
 " CODE FOLDING SETTINGS
 " Do z + a to codefold functions
