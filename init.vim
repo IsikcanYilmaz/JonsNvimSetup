@@ -174,6 +174,13 @@ let g:airline_symbols.linenr = ''
 let g:airline_theme = 'deus'
 
 " CUSTOM KEY SHORTCUTS
-:nnoremap ' :Tags<CR>
+" ' for fzf tags
+:nnoremap ' :Tags<CR> 
+
+" ctrl + w + v for vertical split
+:nnoremap <C-w>v :vnew<CR> 
+:nnoremap <C-w><C-v> :vnew<CR> 
+
+
 """""""""""""""""""""""""""""""""""""""""""""
 
