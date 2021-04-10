@@ -122,9 +122,8 @@ Plug 'fidian/hexmode'
 " Tagbar " Depends on ExuberantCtags 5.5 or up
 Plug 'preservim/tagbar'
 
-" FlyGrep
-Plug 'wsdjeg/FlyGrep.vim'
-
+" Grepper
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
@@ -138,6 +137,9 @@ let g:NERDTreeWinPos = "right"
 "
 
 " Hexmode config
+"
+
+" Grepper config 
 "
 
 " Airline config
