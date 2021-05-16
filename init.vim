@@ -19,9 +19,9 @@ let g:AutoPairs = {}        " turns off auto closing
 set noshowmode              " turns off the bottom line that says --INSERT--
 set tabstop=2               " tab spacing
 set shiftwidth=2            " tab spacing
-set ignorecase
-set smartcase
-set nocscopeverbose
+set ignorecase              " Ignore case when searching
+set smartcase               " When searching try to be smart about cases 
+set nocscopeverbose         
 
 " CODE FOLDING SETTINGS
 " Do z + a to codefold functions
@@ -30,6 +30,21 @@ set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
 set foldlevel=0
+
+" Turn persistent undo on 
+" means that you can undo even when you close a buffer/VIM
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
+
+" Always show current position
+set ruler
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
 
 " LINE BELOW SEARCHES FOR THE CTAGS FILE GOING UP IN DIRECTORIES UNTIL IT FINDS IT
 " SO IS THE NEXT LINE FOR CSCOPE
@@ -186,3 +201,4 @@ let g:airline_theme = 'deus'
 
 """""""""""""""""""""""""""""""""""""""""""""
 
+set cmdheight=1             " cmd line height
