@@ -1,4 +1,3 @@
-
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
 set ignorecase              " case insensitive matching
@@ -21,7 +20,7 @@ set tabstop=2               " tab spacing
 set shiftwidth=2            " tab spacing
 set ignorecase              " Ignore case when searching
 set smartcase               " When searching try to be smart about cases 
-set nocscopeverbose         
+set nocscopeverbose 
 
 " CODE FOLDING SETTINGS
 " Do z + a to codefold functions
@@ -140,6 +139,12 @@ Plug 'preservim/tagbar'
 " Grepper
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
+" HighStr highlighter
+Plug 'kdav5758/HighStr.nvim'
+
+" Diffview git differ
+Plug 'sindrets/diffview.nvim'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -190,6 +195,62 @@ let g:airline_symbols.linenr = ''
 " airline theme
 let g:airline_theme = 'deus'
 
+" HighStr config
+lua << EOF
+local high_str = require("high-str")
+high_str.setup({
+	verbosity = 0,
+	highlight_colors = {
+		-- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
+		color_0 = {"#000000", "smart"},	-- Chartreuse yellow
+		color_1 = {"#e5c07b", "smart"},	-- Pastel yellow
+		color_2 = {"#7FFFD4", "smart"},	-- Aqua menthe
+		color_3 = {"#8A2BE2", "smart"},	-- Proton purple
+		color_4 = {"#FF4500", "smart"},	-- Orange red
+		color_5 = {"#008000", "smart"},	-- Office green
+		color_6 = {"#0000FF", "smart"},	-- Just blue
+		color_7 = {"#FFC0CB", "smart"},	-- Blush pink
+		color_8 = {"#FFF9E3", "smart"},	-- Cosmic latte
+		color_9 = {"#7d5c34", "smart"},	-- Fallow brown
+	}
+})
+EOF
+
+" Diffview config
+lua << EOF
+local cb = require'diffview.config'.diffview_callback
+require'diffview'.setup {
+  diff_binaries = false,    -- Show diffs for binaries
+  file_panel = {
+    width = 35,
+    use_icons = false        -- Requires nvim-web-devicons
+  },
+  key_bindings = {
+    -- The `view` bindings are active in the diff buffers, only when the current
+    -- tabpage is a Diffview.
+    view = {
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+    },
+    file_panel = {
+      ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
+      ["<down>"]    = cb("next_entry"),
+      ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+      ["<up>"]      = cb("prev_entry"),
+      ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
+      ["o"]         = cb("select_entry"),
+      ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
+      ["<tab>"]     = cb("select_next_entry"),
+      ["<s-tab>"]   = cb("select_prev_entry"),
+      ["<leader>e"] = cb("focus_files"),
+      ["<leader>b"] = cb("toggle_files"),
+    }
+  }
+}
+EOF
+
 " CUSTOM KEY SHORTCUTS
 " ' for fzf tags
 :nnoremap ' :Tags<CR> 
@@ -202,3 +263,5 @@ let g:airline_theme = 'deus'
 """""""""""""""""""""""""""""""""""""""""""""
 
 set cmdheight=1             " cmd line height
+
+

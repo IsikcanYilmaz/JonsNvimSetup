@@ -11,6 +11,12 @@ while (( "$#" )); do
       FORCE=1
       shift
       ;;
+    --reinstall)
+      echo "[+] Copying init.vim to $NVIMDIR/"
+      cp init.vim $NVIMDIR/init.vim
+      exit 1
+      shift
+      ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
       exit 1
