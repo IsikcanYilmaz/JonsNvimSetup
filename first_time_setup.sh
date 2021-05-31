@@ -68,7 +68,15 @@ sudo apt install fonts-powerline
 # Install coc extensions
 #nvim -u coc_extension_install.vim
 
-echo "[+] The plugin CoC uses nodejs. Please go here: https://nodejs.org/en/download/ and install it. node needs to be in your \$PATH"
-echo "[+] You also need yarn. do \"npm install -g yarn\" . yarn needs to be in your \$PATH"
-echo "[+] You need to install these coc extensions"
-cat coc_extension_install.vim
+# Builtin LSP Config
+pip3 install 'python-lsp-server[all]'
+#sudo apt install clangd # You should download this yourself and install manually. apt has old version
+echo "[+] Get Clangd from https://clangd.llvm.org/installation.html and install it manually. Apt has old version"
+
+# Clangd uses a program called Bear to generate tag files
+sudo apt install bear
+
+#echo "[+] The plugin CoC uses nodejs. Please go here: https://nodejs.org/en/download/ and install it. node needs to be in your \$PATH"
+#echo "[+] You also need yarn. do \"npm install -g yarn\" . yarn needs to be in your \$PATH"
+#echo "[+] You need to install these coc extensions"
+#cat coc_extension_install.vim

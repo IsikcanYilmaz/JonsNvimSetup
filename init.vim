@@ -49,22 +49,22 @@ set so=7
 " SO IS THE NEXT LINE FOR CSCOPE
 set tags=./tags;,tags;
 
-source ~/.config/nvim/cscope_maps.vim  " cscope 
+"source ~/.config/nvim/cscope_maps.vim  " cscope 
 
 " FUNCTION BELOW FINDS CSCOPE FILE AUTOMATICALLY
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-    " else add the database pointed to by environment variable
-  elseif $CSCOPE_DB != ""
-    cs add $CSCOPE_DB
-  endif
-endfunction
-au BufEnter /* call LoadCscope()
+"function! LoadCscope()
+  "let db = findfile("cscope.out", ".;")
+  "if (!empty(db))
+    "let path = strpart(db, 0, match(db, "/cscope.out$"))
+    "set nocscopeverbose " suppress 'duplicate connection' error
+    "exe "cs add " . db . " " . path
+    "set cscopeverbose
+    "" else add the database pointed to by environment variable
+  "elseif $CSCOPE_DB != ""
+    "cs add $CSCOPE_DB
+  "endif
+"endfunction
+"au BufEnter /* call LoadCscope()
 
 
 colorscheme PaperColor
@@ -118,8 +118,8 @@ Plug 'powerline/fonts'
 
 " COC
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-source ~/.config/nvim/coc_config.vim
+"Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+"source ~/.config/nvim/coc_config.vim
 
 " SimpylFold Python code folder
 Plug 'tmhedberg/SimpylFold'
@@ -145,6 +145,15 @@ Plug 'kdav5758/HighStr.nvim'
 " Diffview git differ
 Plug 'sindrets/diffview.nvim'
 
+" Which key
+Plug 'folke/which-key.nvim'
+
+" Builtin LSP config
+Plug 'neovim/nvim-lspconfig'
+
+" nvim-compe autocompleter
+Plug 'hrsh7th/nvim-compe'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -152,6 +161,84 @@ call plug#end()
 
 " NERDTree config
 let g:NERDTreeWinPos = "right"
+
+" Which key config
+lua << EOF
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+
+" nvim-compe config
+lua << EOF
+vim.o.completeopt = "menuone,noselect"
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+  };
+}
+
+-- map tab and s-tab to navigating the comp menu
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
 
 " Vimshell config
 "
@@ -251,9 +338,60 @@ require'diffview'.setup {
 }
 EOF
 
+" Nvim LSP Config """"""""""""""""""""""""""""""""""
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.pylsp.setup{}
+EOF
+
+:nnoremap K :lua print("No LSP Present")<CR> 
+:nnoremap L :lua print("No LSP Present")<CR> 
+:nnoremap J :lua print("No LSP Present")<CR> 
+:nnoremap ' :lua print("No LSP Present")<CR> 
+lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys 
+-- after the language server attaches to the current buffer
+
+local opts = { noremap=true, silent=true }
+vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<Cmd>lua print("No LSP present")<CR>', opts)
+vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<Cmd>lua print("No LSP present")<CR>', opts)
+vim.api.nvim_buf_set_keymap(0, 'n', 'J', '<cmd>lua print("No LSP present")<CR>', opts)
+vim.api.nvim_buf_set_keymap(0, 'n', "'", '<cmd>lua print("No LSP present")<CR>', opts)
+local on_attach = function(client, bufnr)
+  print("LSP Loaded")
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'L', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'J', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', "'", '<cmd>Tags<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "pyright", "clangd" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+EOF
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " CUSTOM KEY SHORTCUTS
 " ' for fzf tags
-:nnoremap ' :Tags<CR> 
+":nnoremap ' :Tags<CR> 
 
 " ctrl + w + v for vertical split
 :nnoremap <C-w>v :vnew<CR> 
