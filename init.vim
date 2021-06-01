@@ -20,6 +20,7 @@ set tabstop=2               " tab spacing
 set shiftwidth=2            " tab spacing
 set ignorecase              " Ignore case when searching
 set smartcase               " When searching try to be smart about cases 
+set cmdheight=1             " cmd line height
 set nocscopeverbose 
 
 " CODE FOLDING SETTINGS
@@ -338,18 +339,22 @@ require'diffview'.setup {
 }
 EOF
 
-" Nvim LSP Config """"""""""""""""""""""""""""""""""
-
-lua << EOF
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.pylsp.setup{}
-EOF
-
+" Key bindings
 :nnoremap K :lua print("No LSP Present")<CR> 
 :nnoremap L :lua print("No LSP Present")<CR> 
 :nnoremap J :lua print("No LSP Present")<CR> 
 :nnoremap ' :lua print("No LSP Present")<CR> 
+:nnoremap <C-w>v :vnew<CR> 
+:nnoremap <C-w><C-v> :vnew<CR> 
+
+" Nvim LSP Config """"""""""""""""""""""""""""""""""
+
+lua << EOF
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.pylsp.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+EOF
+
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
@@ -381,25 +386,11 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "clangd" }
+local servers = { "pylsp", "clangd", "rust_analyzer"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-
-" CUSTOM KEY SHORTCUTS
-" ' for fzf tags
-":nnoremap ' :Tags<CR> 
-
-" ctrl + w + v for vertical split
-:nnoremap <C-w>v :vnew<CR> 
-:nnoremap <C-w><C-v> :vnew<CR> 
-
-
-"""""""""""""""""""""""""""""""""""""""""""""
-
-set cmdheight=1             " cmd line height
-
 
