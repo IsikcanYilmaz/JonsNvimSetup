@@ -31,14 +31,12 @@ done
 echo "[+] Installing neovim setup"
 
 # Make the nvim directory if its not there
-if [ ! -f "$HOME/.config/nvim/init.vim" ] || [ $FORCE == 1 ] ; then
-  mkdir -p $NVIMDIR
-  mkdir -p $NVIMDIR/autoload
-  cp init.vim $NVIMDIR/init.vim
-  cp cscope_maps.vim $NVIMDIR/cscope_maps.vim
-  cp coc_config.vim $NVIMDIR/coc_config.vim
-  echo "[+] Created ~/.config/nvim/init.vim"
-fi
+mkdir -p $NVIMDIR
+mkdir -p $NVIMDIR/autoload
+cp init.vim $NVIMDIR/init.vim
+cp cscope_maps.vim $NVIMDIR/cscope_maps.vim
+#cp coc_config.vim $NVIMDIR/coc_config.vim
+echo "[+] Created ~/.config/nvim/init.vim"
 
 # Copy over the colors
 if [ ! -d "$NVIMDIR/colors" ] || [ $FORCE == 1 ]; then

@@ -366,6 +366,7 @@ vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<Cmd>lua print("No LSP present")<CR>',
 vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<Cmd>lua print("No LSP present")<CR>', opts)
 vim.api.nvim_buf_set_keymap(0, 'n', 'J', '<cmd>lua print("No LSP present")<CR>', opts)
 vim.api.nvim_buf_set_keymap(0, 'n', "'", '<cmd>lua print("No LSP present")<CR>', opts)
+
 local on_attach = function(client, bufnr)
   print("LSP Loaded")
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -382,6 +383,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'L', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'J', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', "'", '<cmd>Tags<CR>', opts)
+
+  -- disable diags showing up
+  vim.lsp.handlers['textDocument/publishDiagnostics'] = function() end
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -390,6 +394,7 @@ local servers = { "pylsp", "clangd", "rust_analyzer"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
 EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
