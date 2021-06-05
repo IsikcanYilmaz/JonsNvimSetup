@@ -352,7 +352,7 @@ EOF
 lua << EOF
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.pylsp.setup{}
-require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.rls.setup{} -- https://github.com/rust-lang/rls#setup
 EOF
 
 lua << EOF
@@ -390,7 +390,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pylsp", "clangd", "rust_analyzer"}
+local servers = { "pylsp", "clangd", "rls"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
