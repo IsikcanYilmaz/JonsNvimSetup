@@ -155,6 +155,9 @@ Plug 'neovim/nvim-lspconfig'
 " nvim-compe autocompleter
 Plug 'hrsh7th/nvim-compe'
 
+" vim-glsl for syntax highlighting and indenting
+Plug 'tikhomirov/vim-glsl'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""
 
