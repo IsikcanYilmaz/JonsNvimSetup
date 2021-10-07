@@ -99,6 +99,9 @@ Plug 'shougo/deol.nvim'
 "Plug 'shougo/vimproc', {'do' : 'make'}
 "Plug 'shougo/vimshell'
 
+" vim-anyfold
+Plug 'pseewald/vim-anyfold'
+
 " lightline
 "Plug 'itchyny/lightline.vim'
 "let g:lightline = {
@@ -306,6 +309,9 @@ high_str.setup({
 	}
 })
 EOF
+
+" vim-anyfold config
+autocmd Filetype javascript AnyFoldActivate " activate for a specific filetype
 
 " Diffview config
 lua << EOF
