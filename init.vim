@@ -314,7 +314,7 @@ autocmd Filetype javascript AnyFoldActivate " activate for a specific filetype
 
 lua << EOF
 require'lspconfig'.clangd.setup{}
-require'lspconfig'.pylsp.setup{}
+--require'lspconfig'.pylsp.setup{}
 require'lspconfig'.rls.setup{} -- https://github.com/rust-lang/rls#setup
 EOF
 
