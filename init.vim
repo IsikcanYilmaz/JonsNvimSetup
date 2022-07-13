@@ -95,7 +95,6 @@ Plug 'tpope/vim-fugitive'
 
 " Vimshell
 Plug 'shougo/neocomplcache'
-Plug 'shougo/deol.nvim'
 "Plug 'shougo/vimproc', {'do' : 'make'}
 "Plug 'shougo/vimshell'
 
