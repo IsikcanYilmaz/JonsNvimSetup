@@ -69,6 +69,7 @@ set tags=./tags;,tags;
 
 
 colorscheme PaperColor
+"colorscheme HappyHacking 
 
 " GET PLUGINS """"""""""""""""""""""""""""""
 " Specify a directory for plugins
