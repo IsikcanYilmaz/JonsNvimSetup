@@ -37,7 +37,7 @@ if [ ! -f "$HOME/.config/nvim/init.vim" ] || [ $FORCE == 1 ] ; then
   cp init.vim $NVIMDIR/init.vim
   cp cscope_maps.vim $NVIMDIR/cscope_maps.vim
   cp coc_config.vim $NVIMDIR/coc_config.vim
-  echo "[+] Created ~/.config/nvim/init.vim"
+  echo "[+] Created $NVIMDIR/init.vim"
 fi
 
 # Copy over the colors
@@ -59,16 +59,38 @@ fi
 pip3 install pynvim
 pip3 install --upgrade pynvim
 
-# for tig
-sudo apt install tig
+# check if we have apt or pacman
+which apt &> /dev/null
+ISAPT=$?
+which pacman &> /dev/null
+ISPACMAN=$?
 
-# for airline
-sudo apt install fonts-powerline
+if [ $ISAPT -eq 0 ]; then
+  # for tig
+  sudo apt install tig
+  # for airline
+  sudo apt install fonts-powerline
+elif [ $ISPACMAN -eq 0 ]; then
+  # for tig
+  sudo pacman -S tig
+  # for airline
+  sudo pacman -S powerline-fonts
+  # for nodejs
+  sudo pacman -S nodejs
+  # for npm
+  sudo pacman -S npm
+
+  sudo npm install -g yarn
+else
+  echo "[!] Neither apt nor pacman found in system. Couldnt install tig and powerline"
+fi
 
 # Install coc extensions
 #nvim -u coc_extension_install.vim
 
-echo "[+] The plugin CoC uses nodejs. Please go here: https://nodejs.org/en/download/ and install it. node needs to be in your \$PATH"
-echo "[+] You also need yarn. do \"npm install -g yarn\" . yarn needs to be in your \$PATH"
-echo "[+] You need to install these coc extensions"
+if [ $ISAPT -eq 1 ]; then
+  echo "[+] The plugin CoC uses nodejs. Please go here: https://nodejs.org/en/download/ and install it. node needs to be in your \$PATH"
+  echo "[+] You also need yarn. do \"npm install -g yarn\" . yarn needs to be in your \$PATH"
+  echo "[+] You need to install these coc extensions"
+fi
 cat coc_extension_install.vim
