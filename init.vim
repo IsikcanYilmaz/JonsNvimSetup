@@ -150,7 +150,7 @@ Plug 'kdav5758/HighStr.nvim'
 Plug 'folke/which-key.nvim'
 
 " Builtin LSP config
-Plug 'neovim/nvim-lspconfig'
+"Plug 'neovim/nvim-lspconfig'
 
 " nvim-compe autocompleter
 Plug 'hrsh7th/nvim-compe'
@@ -312,54 +312,54 @@ autocmd Filetype javascript AnyFoldActivate " activate for a specific filetype
 
 " Nvim LSP Config """"""""""""""""""""""""""""""""""
 
-lua << EOF
-require'lspconfig'.clangd.setup{}
---require'lspconfig'.pylsp.setup{}
-require'lspconfig'.rls.setup{} -- https://github.com/rust-lang/rls#setup
-EOF
+"lua << EOF
+"require'lspconfig'.clangd.setup{}
+"--require'lspconfig'.pylsp.setup{}
+"require'lspconfig'.rls.setup{} -- https://github.com/rust-lang/rls#setup
+"EOF
 
-lua << EOF
-local nvim_lsp = require('lspconfig')
+"lua << EOF
+"local nvim_lsp = require('lspconfig')
 
--- Use an on_attach function to only map the following keys 
--- after the language server attaches to the current buffer
+"-- Use an on_attach function to only map the following keys 
+"-- after the language server attaches to the current buffer
 
-local opts = { noremap=true, silent=true }
-vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<Cmd>lua print("No LSP present")<CR>', opts)
-vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<Cmd>lua print("No LSP present")<CR>', opts)
-vim.api.nvim_buf_set_keymap(0, 'n', 'J', '<cmd>lua print("No LSP present")<CR>', opts)
-vim.api.nvim_buf_set_keymap(0, 'n', "'", '<cmd>lua print("No LSP present")<CR>', opts)
+"local opts = { noremap=true, silent=true }
+"vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<Cmd>lua print("No LSP present")<CR>', opts)
+"vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<Cmd>lua print("No LSP present")<CR>', opts)
+"vim.api.nvim_buf_set_keymap(0, 'n', 'J', '<cmd>lua print("No LSP present")<CR>', opts)
+"vim.api.nvim_buf_set_keymap(0, 'n', "'", '<cmd>lua print("No LSP present")<CR>', opts)
 
-local on_attach = function(client, bufnr)
-  print("LSP Loaded")
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+"local on_attach = function(client, bufnr)
+  "print("LSP Loaded")
+  "local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  "local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  "--Enable completion triggered by <c-x><c-o>
+  "buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+  "-- Mappings.
+  "local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'L', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'J', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', "'", '<cmd>Tags<CR>', opts)
+  "-- See `:help vim.lsp.*` for documentation on any of the below functions
+  "buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  "buf_set_keymap('n', 'L', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  "buf_set_keymap('n', 'J', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  "buf_set_keymap('n', "'", '<cmd>Tags<CR>', opts)
 
-  -- disable diags showing up
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = function() end
-end
+  "-- disable diags showing up
+  "vim.lsp.handlers['textDocument/publishDiagnostics'] = function() end
+"end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
---local servers = { "pylsp", "clangd", "rls"} -- For now, lets not use pylsp due to its huge amount of warnings
-local servers = { "clangd", "rls"}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
-end
+"-- Use a loop to conveniently call 'setup' on multiple servers and
+"-- map buffer local keybindings when the language server attaches
+"--local servers = { "pylsp", "clangd", "rls"} -- For now, lets not use pylsp due to its huge amount of warnings
+"local servers = { "clangd", "rls"}
+"for _, lsp in ipairs(servers) do
+  "nvim_lsp[lsp].setup { on_attach = on_attach }
+"end
 
-EOF
+"EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
