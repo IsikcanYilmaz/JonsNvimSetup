@@ -57,9 +57,6 @@ require('packer').startup(function(use)
   -- Fuzzy Finder that I use lol
   use 'junegunn/fzf'
 
-  -- vim-anyfold
-  -- use 'pseewald/vim-anyfold'
-  
   -- Grepper
   use 'mhinz/vim-grepper'
 
@@ -138,7 +135,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme PaperColor]]
+vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
