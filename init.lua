@@ -149,6 +149,9 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
+-- Set our default shell
+vim.o.shell = "/usr/bin/zsh"
+
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
