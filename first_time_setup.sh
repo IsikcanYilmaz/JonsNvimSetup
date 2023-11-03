@@ -13,7 +13,7 @@ while (( "$#" )); do
       ;;
     --reinstall)
       echo "[+] Copying init.vim to $NVIMDIR/"
-      cp init.vim $NVIMDIR/init.vim
+      cp init.lua $NVIMDIR/init.lua
       exit 1
       shift
       ;;
@@ -34,7 +34,7 @@ echo "[+] Installing neovim setup"
 if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
-  cp kickstart_based/init.vim $NVIMDIR/init.lua
+  cp init.lua $NVIMDIR/init.lua
   echo "[+] Created $NVIMDIR/init.vim"
 fi
 

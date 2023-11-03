@@ -214,10 +214,11 @@ require('Comment').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
+-- require('indent_blankline').setup {
+--   char = '┊',
+--   show_trailing_blankline_indent = false,
+-- }
+require("ibl").setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -269,7 +270,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'javascript' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'vim', 'javascript' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -394,11 +395,11 @@ end
 local servers = {
   clangd = {},
   -- gopls = {},
-  pyright = {},
-  quick_lint_js = {},
-  bashls = {},
+  -- pyright = {},
+  -- quick_lint_js = {},
+  -- bashls = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  -- tsserver = {},
 
   -- sumneko_lua = {
   --   Lua = {
