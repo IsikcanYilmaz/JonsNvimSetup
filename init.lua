@@ -150,7 +150,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
 -- Set our default shell
-vim.o.shell = "/usr/bin/zsh"
+vim.o.shell = "/usr/bin/bash"
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
