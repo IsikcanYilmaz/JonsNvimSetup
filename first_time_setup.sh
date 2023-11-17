@@ -13,7 +13,7 @@ while (( "$#" )); do
       ;;
     --reinstall)
       echo "[+] Copying init.vim to $NVIMDIR/"
-      cp init.lua $NVIMDIR/init.lua
+      cp init.vim $NVIMDIR/init.lua
       exit 1
       shift
       ;;
@@ -34,8 +34,13 @@ echo "[+] Installing neovim setup"
 if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
+<<<<<<< Updated upstream
   cp init.lua $NVIMDIR/init.lua
   echo "[+] Created $NVIMDIR/init.vim"
+=======
+  cp kickstart.nvim/init.lua $NVIMDIR/init.lua
+  echo "[+] Created $NVIMDIR/init.lua"
+>>>>>>> Stashed changes
 fi
 
 # Copy over the colors
