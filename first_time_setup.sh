@@ -88,7 +88,7 @@ echo "[+] Installing neovim setup"
 if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
-  cp kickstart.nvim/init.lua $NVIMDIR/init.lua
+  cp dotfiles/init.lua $NVIMDIR/init.lua
   echo "[+] Created $NVIMDIR/init.lua"
 fi
 
