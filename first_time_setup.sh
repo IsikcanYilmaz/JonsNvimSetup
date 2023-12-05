@@ -5,6 +5,58 @@ NVIMDIR="$HOME/.config/nvim/"
 FORCE=0
 PARAMS=""
 
+TMPDIR="/tmp/"
+
+NVIM_NIGHTLY_RELEASE_URL="https://github.com/neovim/neovim/releases/download/nightly/"
+NVIM_NIGHTLY_LINUX_NAME="nvim-linux64.tar.gz"
+NVIM_NIGHTLY_MACOS_NAME="nvim-macos.tar.gz"
+
+function install_nvim_if_not_installed()
+{
+  which nvim &> /dev/null
+  NVIM_NOT_INSTALLED=$?
+
+  if [ $NVIM_NOT_INSTALLED -eq 0]; then
+    echo "[!] Nvim not installed! Should this script install it? (y/n)"
+    installSelection=""
+    while [[ "$installSelection" != "y" && "$installSelection" != "n" ]]; do
+      read installSelection
+      echo $installSelection
+    done
+    
+    if [ "$installSelection" == "n" ]; then
+      echo "[!] Won't install"
+      exit 0
+    fi
+    
+    filename=""
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      echo "[*] Linux"
+      filename="$NVIM_NIGHTLY_LINUX_NAME"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      echo "[*] MacOS"
+      filename="$NVIM_NIGHTLY_MACOS_NAME"
+    else
+      echo "[!] Unknown platform! $OSTYPE"
+      exit 1
+    fi
+    
+    initPwd=$PWD
+    cd $TMPDIR
+    wget "$NVIM_NIGHTLY_RELEASE_URL/$filename"
+    mkdir nvimDl
+    mv $filename nvimDl
+    cd nvimDl
+    tar xvf $filename
+
+    # TODO # 
+
+    cd $initPwd
+  else
+    echo "[*] Nvim found at " $(which nvim)
+  fi
+}
+
 while (( "$#" )); do
   case "$1" in
     --force)
@@ -28,19 +80,16 @@ while (( "$#" )); do
   esac
 done
 
+install_nvim_if_not_installed
+
 echo "[+] Installing neovim setup"
 
 # Make the nvim directory if its not there
 if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
-<<<<<<< Updated upstream
-  cp init.lua $NVIMDIR/init.lua
-  echo "[+] Created $NVIMDIR/init.vim"
-=======
   cp kickstart.nvim/init.lua $NVIMDIR/init.lua
   echo "[+] Created $NVIMDIR/init.lua"
->>>>>>> Stashed changes
 fi
 
 # Copy over the colors
@@ -68,32 +117,38 @@ echo "[!] You may want to get the latest npm/node"
 echo "curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -"
 echo "sudo apt-get install -y nodejs"
 
-# check if we have apt or pacman
-which apt &> /dev/null
-ISAPT=$?
-which pacman &> /dev/null
-ISPACMAN=$?
+if [ $OSTYPE == "darwin"* ]; then
+  brew install tig
+  brew install fonts-powerline
+  brew install nodejs
+  brew install npm
+elif [ $OSTYPE == "linux-gnu"* ]; then
+  # check if we have apt or pacman
+  which apt &> /dev/null
+  ISAPT=$?
+  which pacman &> /dev/null
+  ISPACMAN=$?
+  if [ $ISAPT -eq 0 ]; then
+    # for tig
+    sudo apt install tig
+    # for airline
+    sudo apt install fonts-powerline
+    # for npm/node
+    sudo apt install nodejs
+  elif [ $ISPACMAN -eq 0 ]; then
+    # for tig
+    sudo pacman -S tig
+    # for airline
+    sudo pacman -S powerline-fonts
+    # for nodejs
+    sudo pacman -S nodejs
+    # for npm
+    sudo pacman -S npm
 
-if [ $ISAPT -eq 0 ]; then
-  # for tig
-  sudo apt install tig
-  # for airline
-  sudo apt install fonts-powerline
-  # for npm/node
-  sudo apt install nodejs
-elif [ $ISPACMAN -eq 0 ]; then
-  # for tig
-  sudo pacman -S tig
-  # for airline
-  sudo pacman -S powerline-fonts
-  # for nodejs
-  sudo pacman -S nodejs
-  # for npm
-  sudo pacman -S npm
-
-  # sudo npm install -g yarn
-else
-  echo "[!] Neither apt nor pacman found in system. Couldnt install tig and powerline"
+    # sudo npm install -g yarn
+  else
+    echo "[!] Neither apt nor pacman found in system. Couldnt install tig and powerline"
+  fi
 fi
 
 # Install coc extensions
