@@ -65,8 +65,8 @@ while (( "$#" )); do
       shift
       ;;
     --reinstall)
-      echo "[+] Copying init.vim to $NVIMDIR/"
-      cp init.vim $NVIMDIR/init.lua
+      echo "[+] Copying init.lua to $NVIMDIR/"
+      cp dotfiles/init.lua $NVIMDIR/init.lua
       exit 1
       shift
       ;;
@@ -90,13 +90,13 @@ if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
   cp dotfiles/init.lua $NVIMDIR/init.lua
-  echo "[+] Created $NVIMDIR/init.lua"
+  echo "[+] Created $NVIMDIR/init.lua."
 fi
 
 # Copy over the colors
 if [ ! -d "$NVIMDIR/colors" ] || [ $FORCE == 1 ]; then
   cp -r colors $NVIMDIR/colors
-  echo "[+] Copied colors to $NVIMDIR/colors"
+  echo "[+] Copied colors to $NVIMDIR/colors."
 fi
 
 # NO LONGER USE PLUG. WE NOW USE PACKER
@@ -114,7 +114,7 @@ pip3 install pynvim
 pip3 install --upgrade pynvim
 
 # get the latest npm
-echo "[!] You may want to get the latest npm/node"
+echo "[!] You may want to get the latest npm/node:"
 echo "curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -"
 echo "sudo apt-get install -y nodejs"
 
@@ -123,6 +123,7 @@ if [ $OSTYPE == "darwin"* ]; then
   brew install fonts-powerline
   brew install nodejs
   brew install npm
+  brew install bear
 elif [ $OSTYPE == "linux-gnu"* ]; then
   # check if we have apt or pacman
   which apt &> /dev/null
@@ -130,27 +131,23 @@ elif [ $OSTYPE == "linux-gnu"* ]; then
   which pacman &> /dev/null
   ISPACMAN=$?
   if [ $ISAPT -eq 0 ]; then
-    # for tig
     sudo apt install tig
-    # for airline
     sudo apt install fonts-powerline
-    # for npm/node
     sudo apt install nodejs
+    sudo apt install bear
   elif [ $ISPACMAN -eq 0 ]; then
-    # for tig
     sudo pacman -S tig
-    # for airline
     sudo pacman -S powerline-fonts
-    # for nodejs
     sudo pacman -S nodejs
-    # for npm
     sudo pacman -S npm
-
+    sudo pacman -S bear
     # sudo npm install -g yarn
   else
-    echo "[!] Neither apt nor pacman found in system. Couldnt install tig and powerline"
+    echo "[!] Neither apt nor pacman found in system. Couldnt install tig and powerline."
   fi
 fi
+
+echo "[*] Refer to cscope_init.sh for helper bash functions."
 
 # Install coc extensions
 #nvim -u coc_extension_install.vim

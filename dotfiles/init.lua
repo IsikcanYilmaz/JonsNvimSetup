@@ -267,8 +267,12 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 
-  -- JON [Additional plugins]
+  -- JON [Additional plugins] --
   
+  -- gutentags
+  -- 'ludovicchabant/vim-gutentags',
+  -- 'skywind3000/gutentags_plus',
+
   -- Fuzzy finder that I use lol
   'junegunn/fzf',
   
@@ -353,7 +357,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- JON's keymaps
-vim.keymap.set('n', ';', '<cmd>FZF<CR>')
+vim.keymap.set('n', ';', '<cmd>FZF<CR>') -- for fzf
 
 -- JON's vim options
 -- fold
