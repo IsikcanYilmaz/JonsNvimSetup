@@ -267,7 +267,7 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 
-  -- JON -- additional plugins
+  -- JON [Additional plugins]
   
   -- Fuzzy finder that I use lol
   'junegunn/fzf',
@@ -287,8 +287,11 @@ require('lazy').setup({
   -- nvim-dap
   'mfussenegger/nvim-dap',
 
-  -- diffview
+  -- Diffview
   { 'sindrets/diffview.nvim', requires='nvim-lua/plenary.nvim' },
+
+  -- -- Pynvim
+  -- 'neovim/pynvim',
 
 }, {})
 
@@ -607,7 +610,7 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
