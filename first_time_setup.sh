@@ -57,6 +57,7 @@ function install_nvim_if_not_installed()
   fi
 }
 
+# Parse args
 while (( "$#" )); do
   case "$1" in
     --force)
