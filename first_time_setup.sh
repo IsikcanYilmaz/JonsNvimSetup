@@ -16,7 +16,7 @@ function install_nvim_if_not_installed()
   which nvim &> /dev/null
   NVIM_NOT_INSTALLED=$?
 
-  if [ $NVIM_NOT_INSTALLED -eq 0]; then
+  if [ $NVIM_NOT_INSTALLED -eq 1 ]; then
     echo "[!] Nvim not installed! Should this script install it? (y/n)"
     installSelection=""
     while [[ "$installSelection" != "y" && "$installSelection" != "n" ]]; do
