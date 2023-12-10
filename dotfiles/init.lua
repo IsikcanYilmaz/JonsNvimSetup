@@ -267,12 +267,8 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 
-  -- JON [Additional plugins] --
+  -- JON -- additional plugins
   
-  -- gutentags
-  -- 'ludovicchabant/vim-gutentags',
-  -- 'skywind3000/gutentags_plus',
-
   -- Fuzzy finder that I use lol
   'junegunn/fzf',
   
@@ -291,11 +287,8 @@ require('lazy').setup({
   -- nvim-dap
   'mfussenegger/nvim-dap',
 
-  -- Diffview
+  -- diffview
   { 'sindrets/diffview.nvim', requires='nvim-lua/plenary.nvim' },
-
-  -- -- Pynvim
-  -- 'neovim/pynvim',
 
 }, {})
 
@@ -357,7 +350,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- JON's keymaps
-vim.keymap.set('n', ';', '<cmd>FZF<CR>') -- for fzf
+vim.keymap.set('n', ';', '<cmd>FZF<CR>')
 
 -- JON's vim options
 -- fold
@@ -506,20 +499,32 @@ vim.defer_fn(function()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          -- [']m'] = '@function.outer',
+          -- [']]'] = '@class.outer',
+
+          [']]'] = '@function.outer',
+          [']m'] = '@class.outer',
         },
         goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+          -- [']M'] = '@function.outer',
+          -- [']['] = '@class.outer',
+          
+          ['[]'] = '@class.outer',
+          ['[M'] = '@function.outer',
         },
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          -- ['[m'] = '@function.outer',
+          -- ['[['] = '@class.outer',
+
+          ['[['] = '@function.outer',
+          ['[m'] = '@class.outer',
         },
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          -- ['[M'] = '@function.outer',
+          -- ['[]'] = '@class.outer',
+
+          [']['] = '@class.outer',
+          [']M'] = '@function.outer',
         },
       },
       swap = {
@@ -614,7 +619,7 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {},
   -- gopls = {},
-  pyright = {},
+  -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
