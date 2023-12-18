@@ -11,13 +11,14 @@ NVIM_NIGHTLY_RELEASE_URL="https://github.com/neovim/neovim/releases/download/nig
 NVIM_NIGHTLY_LINUX_NAME="nvim-linux64.tar.gz"
 NVIM_NIGHTLY_MACOS_NAME="nvim-macos.tar.gz"
 
+# Check if nvim is installed. If not, download the latest binary
 function install_nvim_if_not_installed()
 {
   which nvim &> /dev/null
   NVIM_NOT_INSTALLED=$?
 
-  if [ $NVIM_NOT_INSTALLED -eq 1 ]; then
-    echo "[!] Nvim not installed! Should this script install it? (y/n)"
+  if [[ $NVIM_NOT_INSTALLED -eq 1 || $FORCE -eq 1 ]]; then
+    echo "[?] Nvim not installed! Should this script install it? (y/n)"
     installSelection=""
     while [[ "$installSelection" != "y" && "$installSelection" != "n" ]]; do
       read installSelection
@@ -26,7 +27,7 @@ function install_nvim_if_not_installed()
     
     if [ "$installSelection" == "n" ]; then
       echo "[!] Won't install"
-      exit 0
+      return 0
     fi
     
     filename=""
@@ -38,7 +39,7 @@ function install_nvim_if_not_installed()
       filename="$NVIM_NIGHTLY_MACOS_NAME"
     else
       echo "[!] Unknown platform! $OSTYPE"
-      exit 1
+      return 1
     fi
     
     initPwd=$PWD
@@ -48,8 +49,12 @@ function install_nvim_if_not_installed()
     mv $filename nvimDl
     cd nvimDl
     tar xvf $filename
-
-    # TODO # 
+    nvimExtractDir=$(echo $filename | awk -F. '{print $1}')
+    cd $nvimExtractDir
+    
+    echo "[*] Installing nvim binary to /usr/bin/"
+    sudo cp bin/nvim /usr/bin/nvim
+    # TODO copy the rest of the files? # 
 
     cd $initPwd
   else
