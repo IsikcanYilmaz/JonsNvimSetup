@@ -293,6 +293,9 @@ require('lazy').setup({
   -- diffview
   { 'sindrets/diffview.nvim', requires='nvim-lua/plenary.nvim' },
 
+  -- Deardiary
+  { 'ishchow/nvim-deardiary' },
+
 }, {})
 
 -- [[ Setting options ]]
@@ -711,6 +714,15 @@ cmp.setup {
     { name = 'nvim_lsp' },
     -- { name = 'luasnip' },
   },
+}
+
+-- [[ Configure Deardiary ]]
+local config = require("deardiary.config")
+config.journals = {
+  {
+    path = "~/journals/work",
+    frequencies = {"daily"}
+  }
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
