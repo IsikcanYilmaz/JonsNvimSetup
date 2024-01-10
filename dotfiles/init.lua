@@ -74,7 +74,7 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -272,6 +272,20 @@ require('lazy').setup({
 
   -- JON -- additional plugins
   
+  -- Neogit
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    config = true
+  }, 
+  
   -- Fuzzy finder that I use lol
   'junegunn/fzf',
   
@@ -363,6 +377,10 @@ vim.keymap.set('n', ';', '<cmd>FZF<CR>')
 vim.o.foldlevel = 99
 vim.o.foldmethod = 'indent'
 vim.o.foldnestmax = 10
+
+-- tabstop, shiftwidth
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
 
 -- NERDTree
 vim.g.NERDTreeWinPos = "right"
