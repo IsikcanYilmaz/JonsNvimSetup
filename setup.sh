@@ -72,6 +72,7 @@ while (( "$#" )); do
     --reinstall)
       echo "[+] Copying init.lua to $NVIMDIR/"
       cp dotfiles/init.lua $NVIMDIR/init.lua
+			cp dotfiles/.tmux.conf $HOME
       exit 1
       shift
       ;;
@@ -95,7 +96,9 @@ if [ ! -f "$HOME/.config/nvim/init.lua" ] || [ $FORCE == 1 ] ; then
   mkdir -p $NVIMDIR
   mkdir -p $NVIMDIR/autoload
   cp dotfiles/init.lua $NVIMDIR/init.lua
+	cp dotfiles/.tmux.conf $HOME
   echo "[+] Created $NVIMDIR/init.lua."
+	echo "[+] Created $HOME/.tmux.conf"
 fi
 
 # Copy over the colors
