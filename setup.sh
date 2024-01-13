@@ -62,6 +62,18 @@ function install_nvim_if_not_installed()
   fi
 }
 
+function install_nvim_config()
+{
+	echo "[+] Copying init.lua to $NVIMDIR/"
+	cp dotfiles/init.lua $NVIMDIR/init.lua
+}
+
+function install_tmux_config()
+{
+	echo "[+] Copying .tmux.conf to $HOME/"
+	cp dotfiles/.tmux.conf $HOME
+}
+
 # Parse args
 while (( "$#" )); do
   case "$1" in
@@ -69,11 +81,20 @@ while (( "$#" )); do
       FORCE=1
       shift
       ;;
+		--nvim-only)
+			install_nvim_config()
+			exit 1
+			shift
+			;;
+		--tmux-only)
+			install_tmux_config()
+			exit 1
+			shift
+			;;
     --reinstall)
-      echo "[+] Copying init.lua to $NVIMDIR/"
-      cp dotfiles/init.lua $NVIMDIR/init.lua
-			cp dotfiles/.tmux.conf $HOME
-      exit 1
+			install_nvim_config()
+			install_tmux_config()
+			exit 1
       shift
       ;;
     -*|--*=) # unsupported flags
