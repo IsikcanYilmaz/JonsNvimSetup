@@ -82,18 +82,18 @@ while (( "$#" )); do
       shift
       ;;
 		--nvim-only)
-			install_nvim_config()
+			install_nvim_config
 			exit 1
 			shift
 			;;
 		--tmux-only)
-			install_tmux_config()
+			install_tmux_config
 			exit 1
 			shift
 			;;
     --reinstall)
-			install_nvim_config()
-			install_tmux_config()
+			install_nvim_config
+			install_tmux_config
 			exit 1
       shift
       ;;
