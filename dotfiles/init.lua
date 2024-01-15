@@ -373,6 +373,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', ';', '<cmd>FZF<CR>')
 
 -- JON's vim options
+-- Disable editorconfig (It may be a good solution for certain things but i aint got the time to figure it out rn)
+vim.g.editorconfig = false
+
 -- fold
 vim.o.foldlevel = 99
 vim.o.foldmethod = 'indent'
