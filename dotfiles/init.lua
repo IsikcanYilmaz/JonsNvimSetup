@@ -395,6 +395,11 @@ vim.diagnostic.config {
   underline = false,
 }
 
+-- Configure terminal
+vim.api.nvim_command('autocmd TermOpen * startinsert')
+vim.api.nvim_command('autocmd TermOpen * setlocal nonumber')
+vim.api.nvim_command('autocmd TermEnter * setlocal signcolumn=no')
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
