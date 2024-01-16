@@ -387,6 +387,7 @@ vim.o.tabstop = 2
 
 -- NERDTree
 vim.g.NERDTreeWinPos = "right"
+vim.g.NERDTreeShowHidden = 1
 
 -- Diagnostics
 vim.diagnostic.config {
