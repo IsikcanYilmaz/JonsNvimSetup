@@ -1,2 +1,2 @@
 # JonsNvimSetup
-my neovim setup
+My neovim and tmux dotfiles, easy neovim installation script, etc. 
