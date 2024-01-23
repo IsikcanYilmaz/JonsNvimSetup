@@ -68,7 +68,7 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
+--
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -308,6 +308,22 @@ require('lazy').setup({
   -- NERDTree
   'scrooloose/nerdtree',
 
+  -- nvim-tree
+  {
+    'nvim-tree/nvim-tree.lua',
+    -- cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    -- init = function()
+    --   require("core.utils").load_mappings "nvimtree"
+    -- end,
+    -- opts = function()
+    --   return require "plugins.configs.nvimtree"
+    -- end,
+    -- config = function(_, opts)
+    --   dofile(vim.g.base46_cache .. "nvimtree")
+    --   require("nvim-tree").setup(opts)
+    -- end,
+  },
+
   -- nvim-dap
   'mfussenegger/nvim-dap',
 
@@ -395,6 +411,32 @@ vim.o.tabstop = 2
 -- NERDTree
 vim.g.NERDTreeWinPos = "right"
 vim.g.NERDTreeShowHidden = 1
+
+-- nvim-tree
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- setup with some options
+require("nvim-tree").setup({
+  respect_buf_cwd = true,
+  reload_on_bufenter = true,
+  sync_root_with_cwd = true,
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+    side = "right",
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+vim.keymap.set('n', '<leader>f', '<cmd>NvimTreeToggle<CR>')
 
 -- Diagnostics
 vim.diagnostic.config {
