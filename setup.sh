@@ -7,6 +7,8 @@ PARAMS=""
 
 TMPDIR="/tmp/"
 
+NVIM_DESIRED_VERSION="v0.9.4"
+NVIM_DESIRED_RELEASE_URL="https://github.com/neovim/neovim/releases/download/"$NVIM_DESIRED_VERSION"/"
 NVIM_NIGHTLY_RELEASE_URL="https://github.com/neovim/neovim/releases/download/nightly/"
 NVIM_NIGHTLY_LINUX_NAME="nvim-linux64.tar.gz"
 NVIM_NIGHTLY_MACOS_NAME="nvim-macos.tar.gz"
@@ -44,7 +46,7 @@ function install_nvim_if_not_installed()
     
     initPwd=$PWD
     cd $TMPDIR
-    wget "$NVIM_NIGHTLY_RELEASE_URL/$filename"
+    wget "$NVIM_DESIRED_RELEASE_URL/$filename"
     mkdir nvimDl
     mv $filename nvimDl
     cd nvimDl
