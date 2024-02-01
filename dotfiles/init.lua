@@ -293,6 +293,9 @@ require('lazy').setup({
 
   -- Handle big files; disable some features when working w big files
   { 'LunarVim/bigfile.nvim' },
+  
+  -- nvim-scrollbar
+  { 'dstein64/nvim-scrollview' },
 
   -- Useful plugin to show you pending keybinds. Load it after everything
   { 'folke/which-key.nvim', opts = {} },
@@ -663,7 +666,7 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  clangd = {},
+  -- clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
