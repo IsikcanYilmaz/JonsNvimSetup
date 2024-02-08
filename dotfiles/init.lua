@@ -362,6 +362,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- JON's keymaps
 vim.keymap.set('n', ';', '<cmd>FZF<CR>') -- ; to invoke FZF
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-W>', {noremap = true}) -- CTRL BKSPACE to delete word
+vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
 -- JON's vim options
 -- Disable editorconfig (It may be a good solution for certain things but i aint got the time to figure it out rn)
