@@ -368,6 +368,9 @@ vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 -- Disable editorconfig (It may be a good solution for certain things but i aint got the time to figure it out rn)
 vim.g.editorconfig = false
 
+-- scrollbar
+vim.g.scrollview_diagnostics_severities = {vim.diagnostic.severity.ERROR}
+
 -- fold
 vim.o.foldlevel = 99
 vim.o.foldmethod = 'indent'
