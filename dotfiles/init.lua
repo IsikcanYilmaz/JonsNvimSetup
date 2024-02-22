@@ -406,8 +406,11 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
+  git = {
+    ignore = false,
+  }
 })
 vim.keymap.set('n', '<leader>f', '<cmd>NvimTreeToggle<CR>')
 
