@@ -93,7 +93,11 @@ while (( "$#" )); do
 			exit 1
 			shift
 			;;
-    --reinstall)
+		--install-nvim)
+			install_nvim_if_not_installed
+			exit 1
+			;;
+		--reinstall)
 			install_nvim_config
 			install_tmux_config
 			exit 1
