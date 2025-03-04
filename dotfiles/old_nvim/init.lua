@@ -157,15 +157,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -300,6 +291,8 @@ require('lazy').setup({
   -- Useful plugin to show you pending keybinds. Load it after everything
   { 'folke/which-key.nvim', opts = {} },
 
+  { 'nyoom-engineering/oxocarbon.nvim' },
+
 }, {})
 
 -- [[ Setting options ]]
@@ -371,6 +364,10 @@ vim.g.editorconfig = false
 
 -- scrollbar
 vim.g.scrollview_diagnostics_severities = {vim.diagnostic.severity.ERROR}
+
+-- Colorscheme
+-- vim.cmd.colorscheme 'PaperColor'
+vim.cmd.colorscheme 'oxocarbon'
 
 -- fold
 vim.o.foldlevel = 99
