@@ -31,7 +31,8 @@ return {
   },
 
   {
-    "preservim/tagbar"
+    "preservim/tagbar",
+    lazy = false
   }
 }
 
