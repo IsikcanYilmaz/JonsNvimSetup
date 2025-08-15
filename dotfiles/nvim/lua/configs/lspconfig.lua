@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pylsp", "clangd" }
+local servers = { "html", "cssls", "clangd", "pylsp"}
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -26,3 +26,4 @@ end
 lspconfig.clangd.setup {
   cmd = { "clangd", "--clang-tidy", "--header-insertion=never", "--completion-style=detailed", "--background-index", "--pch-storage=memory", "--log=verbose", "--fallback-style=llvm"}
 }
+
