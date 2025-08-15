@@ -9,7 +9,7 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
--- map('n', '<leader>g', '<cmd>Grepper -tool grep<CR>') -- leader g to invoke grepper with grep tool
+map('n', '<leader>g', '<cmd>Grepper -tool grep<CR>') -- leader g to invoke grepper with grep tool
 map('n', ';', '<cmd>FZF<CR>') -- ; to invoke FZF
 
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-W>', {noremap = true}) -- CTRL BKSPACE to delete word
