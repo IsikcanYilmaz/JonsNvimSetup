@@ -24,6 +24,15 @@ end
 -- }
 
 lspconfig.clangd.setup {
-  cmd = { "clangd", "--clang-tidy", "--header-insertion=never", "--completion-style=detailed", "--background-index", "--pch-storage=memory", "--log=verbose", "--fallback-style=llvm"}
+  cmd = { "clangd", 
+    "--clang-tidy", 
+    "--header-insertion=never", 
+    "--completion-style=detailed", 
+    "--background-index", 
+    "--pch-storage=memory", 
+    "--log=verbose", 
+    "--fallback-style=llvm",
+    "--function-arg-placeholders=0"
+  }
 }
 
