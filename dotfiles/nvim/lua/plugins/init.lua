@@ -38,6 +38,11 @@ return {
   {
     "williamboman/mason.nvim",
     lazy = false
+  },
+
+  {
+    "fidian/hexmode",
+    lazy = true
   }
 
 }
