@@ -1,38 +1,45 @@
--- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
+local servers = { "html", "cssls", "clangd", "pylsp" }
+vim.lsp.enable(servers)
 
--- EXAMPLE
-local servers = { "html", "cssls", "clangd", "pylsp"}
-local nvlsp = require "nvchad.configs.lspconfig"
-
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
-end
-
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
+--
+--
+-- -- load defaults i.e lua_lsp
+-- require("nvchad.configs.lspconfig").defaults()
+--
+-- local lspconfig = require "lspconfig"
+--
+-- -- EXAMPLE
+-- local servers = { "html", "cssls", "clangd", "pylsp"}
+-- local nvlsp = require "nvchad.configs.lspconfig"
+--
+-- -- lsps with default config
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = nvlsp.on_attach,
+--     on_init = nvlsp.on_init,
+--     capabilities = nvlsp.capabilities,
+--   }
+-- end
+--
+-- -- configuring single server, example: typescript
+-- -- lspconfig.ts_ls.setup {
+-- --   on_attach = nvlsp.on_attach,
+-- --   on_init = nvlsp.on_init,
+-- --   capabilities = nvlsp.capabilities,
+-- -- }
+--
+-- lspconfig.clangd.setup {
+--   cmd = { "clangd", 
+--     "--clang-tidy", 
+--     "--header-insertion=never", 
+--     "--completion-style=detailed", 
+--     "--background-index", 
+--     "--pch-storage=memory", 
+--     "--log=verbose", 
+--     "--fallback-style=llvm",
+--     "--function-arg-placeholders=0"
+--   }
 -- }
-
-lspconfig.clangd.setup {
-  cmd = { "clangd", 
-    "--clang-tidy", 
-    "--header-insertion=never", 
-    "--completion-style=detailed", 
-    "--background-index", 
-    "--pch-storage=memory", 
-    "--log=verbose", 
-    "--fallback-style=llvm",
-    "--function-arg-placeholders=0"
-  }
-}
 
