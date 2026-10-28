@@ -42,7 +42,18 @@ return {
 
   {
     "fidian/hexmode",
-    lazy = true
+    lazy = false
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+    opts = {},
+  },
+
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G", "Gdiffsplit", "Gvdiffsplit" },
   }
 
 }

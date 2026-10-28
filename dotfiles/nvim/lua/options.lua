@@ -22,8 +22,8 @@ o.foldmethod = 'indent'
 o.foldnestmax = 10
 
 -- TABSTOP, SHIFTWIDTH
-o.shiftwidth = 2
-o.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 
 -- DIAGS
 vim.diagnostic.enable(false);

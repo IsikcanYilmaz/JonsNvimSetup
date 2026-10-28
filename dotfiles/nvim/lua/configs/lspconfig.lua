@@ -1,45 +1,14 @@
+-- load defaults i.e lua_lsp
+-- (also applies nvchad's capabilities/on_init to every server and its on_attach via LspAttach)
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls", "clangd", "pylsp" }
+local servers = { "html", "cssls", "clangd", "pylsp"}
+
+-- configuring single server, example: typescript
+-- vim.lsp.config("ts_ls", { settings = { ... } })
+
+vim.lsp.config("clangd", {
+  cmd = { "clangd", "--clang-tidy", "--header-insertion=never", "--completion-style=detailed", "--background-index", "--pch-storage=memory","--fallback-style=llvm", "--function-arg-placeholders=0"}
+})
+
 vim.lsp.enable(servers)
-
---
---
--- -- load defaults i.e lua_lsp
--- require("nvchad.configs.lspconfig").defaults()
---
--- local lspconfig = require "lspconfig"
---
--- -- EXAMPLE
--- local servers = { "html", "cssls", "clangd", "pylsp"}
--- local nvlsp = require "nvchad.configs.lspconfig"
---
--- -- lsps with default config
--- for _, lsp in ipairs(servers) do
---   lspconfig[lsp].setup {
---     on_attach = nvlsp.on_attach,
---     on_init = nvlsp.on_init,
---     capabilities = nvlsp.capabilities,
---   }
--- end
---
--- -- configuring single server, example: typescript
--- -- lspconfig.ts_ls.setup {
--- --   on_attach = nvlsp.on_attach,
--- --   on_init = nvlsp.on_init,
--- --   capabilities = nvlsp.capabilities,
--- -- }
---
--- lspconfig.clangd.setup {
---   cmd = { "clangd", 
---     "--clang-tidy", 
---     "--header-insertion=never", 
---     "--completion-style=detailed", 
---     "--background-index", 
---     "--pch-storage=memory", 
---     "--log=verbose", 
---     "--fallback-style=llvm",
---     "--function-arg-placeholders=0"
---   }
--- }
-
